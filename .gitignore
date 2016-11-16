@@ -1,0 +1,4 @@
+#ignore this stuff
+/output
+*.csv
+*.txt
