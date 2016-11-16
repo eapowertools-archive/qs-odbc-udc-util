@@ -2,6 +2,7 @@
 <Settings>
     <Files>
         <HRData>f:/my documents/_git/qs-odbc-udc-util/qsEMP.txt</HRData>
+        <Group>f:/my documents/_git/qs-odbc-udc-util/groups.csv</Group>
     </Files>
     <Directories>
         <Output>f:/my documents/_git/qs-odbc-udc-util/output</Output>
@@ -14,12 +15,12 @@
         </Paths>
     </LDAP>
     <Security>
-        <UserId>qtsel\jog</UserId>
-        <Password>Pats2015</Password>
+        <UserId>boohoo</UserId>
+        <Password>foo</Password>
     </Security>
     <Groups>
         <Group>DL-Americas-PreSales</Group>
-        <Group>DL-Americas OEM Sales Team</Group>
+        <Group>DL-Americas Presales Leadership</Group>
     </Groups>
     <Domains>
         <Domain>qliktech</Domain>
