@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<Settings>
+    <Files>
+        <HRData>f:/my documents/_git/qs-odbc-udc-util/qsEMP.txt</HRData>
+    </Files>
+    <Directories>
+        <Output>f:/my documents/_git/qs-odbc-udc-util/output</Output>
+    </Directories>
+    <LDAP>
+        <Server>LDAP://qliktech.com/</Server>
+        <Paths>
+            <Path>OU=Activate Groups,DC=qliktech,DC=com</Path>
+            <Path>DC=qliktech,DC=com</Path>
+        </Paths>
+    </LDAP>
+    <Security>
+        <UserId>qtsel\jog</UserId>
+        <Password>Pats2015</Password>
+    </Security>
+    <Groups>
+        <Group>DL-Americas-PreSales</Group>
+        <Group>DL-Americas OEM Sales Team</Group>
+    </Groups>
+    <Domains>
+        <Domain>qliktech</Domain>
+        <Domain>nam</Domain>
+        <Domain>eur</Domain>
+        <Domain>jpn</Domain>
+    </Domains>
+</Settings>
