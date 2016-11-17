@@ -8,10 +8,10 @@
         <Output>f:/my documents/_git/qs-odbc-udc-util/output</Output>
     </Directories>
     <LDAP>
-        <Server>LDAP://qliktech.com/</Server>
+        <Server>LDAP Address Goes here</Server>
         <Paths>
-            <Path>OU=Activate Groups,DC=qliktech,DC=com</Path>
-            <Path>DC=qliktech,DC=com</Path>
+            <Path>LDAP Path goes here</Path>
+            <Path>LDAP Path goes here</Path>
         </Paths>
     </LDAP>
     <Security>
@@ -19,11 +19,11 @@
         <Password>foo</Password>
     </Security>
     <Groups>
-        <Group>DL-Americas-PreSales</Group>
-        <Group>DL-Americas Presales Leadership</Group>
+        <Group>If not using a group file, group name goes here</Group>
+        <Group>If not using a group file, group name goes here</Group>
     </Groups>
     <Domains>
-        <Domain>qliktech</Domain>
+        <Domain>foo</Domain>
         <Domain>nam</Domain>
         <Domain>eur</Domain>
         <Domain>jpn</Domain>
