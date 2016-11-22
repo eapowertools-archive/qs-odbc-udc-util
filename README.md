@@ -67,4 +67,5 @@ The Files section is used when an external file containing attributes is mapped 
 
 UserID | Type | Value
 -------|------|------
- 
+abc123 |email | abc123@example.com
+abc123 |role  | developer
