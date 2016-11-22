@@ -24,7 +24,7 @@ The qs-odbc-udc-util uses an xml file named settings.xml to provide configuratio
 ```xml
 <Settings>
 	<Files>
-		<HRData>If none LDAP data is used, enter path to csv file with data</HRData>
+		<HRData>If no LDAP attributes are used, enter path to csv file with data to map attributes to users</HRData>
 	</Files>
 	<Directories>
 		<Output>path to output directory for user and attribute csv files</Output>
@@ -58,3 +58,13 @@ The qs-odbc-udc-util uses an xml file named settings.xml to provide configuratio
 </Settings>
 ```
 ###Interpreting the XML File
+The Settings.xml file contains the following sections:
+
+####Files
+The Files section is used when an external file containing attributes is mapped to users from the LDAP.  The case for this may be when an LDAP is not the source of record for user attributes.  If an external file is referenced, use the `HRData` element tag and supply the path and name of the file.  The file must be in csv format.
+
+>HRData file structure
+
+UserID | Type | Value
+-------|------|------
+ 
