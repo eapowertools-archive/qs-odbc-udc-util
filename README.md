@@ -20,8 +20,41 @@ The qs-odbc-udc-util tool (so needs a better name) is a Windows Powershell scrip
 ##Configuration
 The qs-odbc-udc-util uses an xml file named settings.xml to provide configuration information to the powershell script that performs the work.
 
+###XML File Structure
 ```xml
 <Settings>
-	<Files />
+	<Files>
+		<HRData>If none LDAP data is used, enter path to csv file with data</HRData>
+	</Files>
+	<Directories>
+		<Output>path to output directory for user and attribute csv files</Output>
+	</Directories>
+	<LDAP>
+		<Servers>
+			<Server>
+				<Name>LDAP://example.com</Name>
+				<Paths>
+					<Path>ou=groups,dc=example,dc=com</Path>
+					<Path>ou=otherGroups,dc=example,dc=com</Path>
+				</Paths>
+				<UGroups>true</UGroups>
+				<Security>
+					<UserId>user</UserId>
+					<Password>password</Password>
+				</Security>
+				<Groups>
+					<Group type="inline">InlineGroup1</Group>
+					<Group type="inline">InlineGroup2</Group>
+					<Group type="file">path to csv file with list of groups</Group>
+				</Groups>
+			</Server>
+		</Servers>
+	</LDAP>
+	<Domains>
+		<Domain>DomainOne</Domain>
+		<Domain>DomainTwo</Domain>
+		<Domain>DomainThree</Domain>
+	</Domains>		
 </Settings>
 ```
+###Interpreting the XML File
