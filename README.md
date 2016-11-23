@@ -85,8 +85,8 @@ The Directories section specifies the output path for files created by the scrip
 The LDAP section contains a number of settings for connecting and traversing LDAPs for user information.  LDAP connections are referenced in Server elements.  Each Server element refers to a specific LDAP where the script will perform the extraction and parsing of users into user and attribute csvs.
 
 Server elements may contain the following information:
-* **<Name>** - The Name element (required) containing the LDAP server connection.  `LDAP://example.com`
-* **<Paths><Path>** - Path elements (required) contain the starting point for the LDAP to connection.  This is a good option to supply multiple organizational units that contain groups.  The tool will loop through each path and connect to the LDAP to begin searching for groups.
-* **<Security>** - The Security element (optional) stores user and password information for an LDAP connection.  If omitted, the user context the script is run will be used to connect to the LDAP.
-* **<Groups><Group** `type="inline||file"`**>** - The Group element identifies universal groups to search for users.  An inline attribute indicates a group provided in the settings file.  A file attribute indicates a csv file containing group names is used.  When using the file attribute the full path to the csv file containing group names is required. 
+* **`<Name>`** - The Name element (required) containing the LDAP server connection.  `LDAP://example.com`
+* **`<Paths><Path>`** - Path elements (required) contain the starting point for the LDAP to connection.  This is a good option to supply multiple organizational units that contain groups.  The tool will loop through each path and connect to the LDAP to begin searching for groups.
+* **`<Security>`** - The Security element (optional) stores user and password information for an LDAP connection.  If omitted, the user context the script is run will be used to connect to the LDAP.
+* **`<Groups><Group`** `type="inline||file"`**`>`** - The Group element identifies universal groups to search for users.  An inline attribute indicates a group provided in the settings file.  A file attribute indicates a csv file containing group names is used.  When using the file attribute the full path to the csv file containing group names is required. 
 
