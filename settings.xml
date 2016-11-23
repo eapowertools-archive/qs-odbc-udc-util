@@ -2,30 +2,40 @@
 <Settings>
     <Files>
         <HRData>f:/my documents/_git/qs-odbc-udc-util/qsEMP.txt</HRData>
-        <Group>f:/my documents/_git/qs-odbc-udc-util/groups.csv</Group>
     </Files>
     <Directories>
         <Output>f:/my documents/_git/qs-odbc-udc-util/output</Output>
     </Directories>
     <LDAP>
-        <Server>LDAP Address Goes here</Server>
-        <Paths>
-            <Path>LDAP Path goes here</Path>
-            <Path>LDAP Path goes here</Path>
-        </Paths>
+        <Servers>
+            <Server>
+                <Name>LDAP://americas.example.com
+                <Paths>
+                    <Path>ou=activegroups,dc=americas,dc=example,dc=com</Path>
+                    <Path>ou=securitygroups,dc=americas,dc=example,dc=com</Path>
+                </Paths>
+                <Security>
+                    <UserId></UserId>
+                    <Password></Password>
+                </Security>
+                <Groups>
+                    <Group type="inline">qlikdevelopers</Group>
+                    <Group type="file">f:/my documents/_git/inputs/groups.csv</Group>
+                <Groups>
+            </Server>
+            <Server>
+                <Name>LDAP://europe.example.com</Name>
+                <Paths>
+                    <Path>ou=groups,dc=europe,dc=example,dc=com</Path>
+                </Paths>
+                <Groups>
+                    <Group type="file">f:/my documents/_git/inputs/eu-groups.csv</Group>
+                </Groups>
+            </Server>
+        </Servers>
     </LDAP>
-    <Security>
-        <UserId>boohoo</UserId>
-        <Password>foo</Password>
-    </Security>
-    <Groups>
-        <Group>If not using a group file, group name goes here</Group>
-        <Group>If not using a group file, group name goes here</Group>
-    </Groups>
     <Domains>
-        <Domain>foo</Domain>
-        <Domain>nam</Domain>
-        <Domain>eur</Domain>
-        <Domain>jpn</Domain>
+        <Domain>americas</Domain>
+        <Domain>europe</Domain>
     </Domains>
 </Settings>
