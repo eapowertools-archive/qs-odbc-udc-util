@@ -90,3 +90,5 @@ Server elements may contain the following information:
 * **`<Security>`** - The Security element (optional) stores user and password information for an LDAP connection.  If omitted, the user context the script is run will be used to connect to the LDAP.
 * **`<Groups><Group`** `type="inline||file"`**`>`** - The Group element identifies universal groups to search for users.  An inline attribute indicates a group provided in the settings file.  A file attribute indicates a csv file containing group names is used.  When using the file attribute the full path to the csv file containing group names is required. 
 
+####Domains
+The Domains section contains the domains to evaluate universal group members origin to properly place them in the correct user and attributes csv file.
