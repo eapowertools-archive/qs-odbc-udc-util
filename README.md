@@ -73,14 +73,14 @@ The qs-odbc-udc-util uses an xml file named settings.xml to provide configuratio
 The Settings.xml file contains the following sections:
 
 ####Files
-The Files section is used when an external file containing attributes is mapped to users from the LDAP.  The case for this may be when an LDAP is not the source of record for user attributes.  If an external file is referenced, use the `HRData` element tag and supply the path and name of the file.
+The Files section is used when an external file containing attributes is mapped to users from the LDAP.  The case for this may be when an LDAP is not the source of record for user attributes.  If an external file is referenced, use the `AttributeData` element tag and supply the path and name of the file.
 
 #####Requirements
-* Use the HRData Element
+* Use the AttributeData Element
 * Specify full path to file **e.g.** c:/docs/info.csv
 * File in csv format
 
-#####HRData file structure
+#####AttributeData file structure
 
 UserId | Type | Value
 -------|------|------
@@ -104,4 +104,4 @@ Server elements may contain the following information:
 * **`<Groups><Group`** `type="inline||file"`**`>`** - The Group element identifies universal groups to search for users.  An inline attribute indicates a group provided in the settings file.  A file attribute indicates a csv file containing group names is used.  When using the file attribute the full path to the csv file containing group names is required. 
 
 ####Domains
-The Domains section contains the domains to evaluate universal group members origin to properly place them in the correct user and attributes csv file.
+The Domains section contains the domains to evaluate universal group members origin to properly place them in the correct user and attributes csv file.  In addition, the Domains section specifies the name of the domain, the ldap address for the domain, and attribute names for values that will be added to the csv files.
