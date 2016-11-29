@@ -24,7 +24,7 @@ The qs-odbc-udc-util uses an xml file named settings.xml to provide configuratio
 ```xml
 <Settings>
 	<Files>
-		<HRData>If no LDAP attributes are used, enter path to csv file with data to map attributes to users</HRData>
+		<AttributeData>If no LDAP attributes are used, enter path to csv file with data to map attributes to users</AttributeData>
 	</Files>
 	<Directories>
 		<Output>path to output directory for user and attribute csv files</Output>
@@ -50,9 +50,22 @@ The qs-odbc-udc-util uses an xml file named settings.xml to provide configuratio
 		</Servers>
 	</LDAP>
 	<Domains>
-		<Domain>DomainOne</Domain>
-		<Domain>DomainTwo</Domain>
-		<Domain>DomainThree</Domain>
+		<Domain>
+			<Name>DomainOne</Name>
+			<LDAP>http://domainone.example.com</LDAP>
+			<Attributes>
+				<Attribute>memberof</Attribute>
+				<Attribute>mail</Attribute>
+			</Attributes>
+		</Domain>
+		<Domain>
+			<Name>DomainTwo</Name>
+			<LDAP>http://domaintwo.example.com</LDAP>
+			<Attributes>
+				<Attribute>memberof</Attribute>
+				<Attribute>mail</Attribute>
+			</Attributes>
+		</Domain>
 	</Domains>		
 </Settings>
 ```
