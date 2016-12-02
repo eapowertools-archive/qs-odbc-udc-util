@@ -51,5 +51,14 @@
                 <Attribute>mail</Attribute>
             </Attributes>
         </Domain>
+        <Domain>
+            <Name>qliktech</Name>
+            <LDAP>LDAP://qliktech.com/</LDAP>
+            <Path>DC=qliktech,DC=com</Path>
+            <Attributes>
+                <Attribute>memberof</Attribute>
+                <Attribute>mail</Attribute>
+            </Attributes>
+        </Domain>
     </Domains>
 </Settings>
