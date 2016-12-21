@@ -1,4 +1,7 @@
 #ignore this stuff
 /output
+/citi
 *.csv
 *.txt
+/tests
+/backup

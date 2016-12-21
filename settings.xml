@@ -1,8 +1,18 @@
 <?xml version="1.0"?>
 <Settings>
+<!--If Qlik Sense service account is a domain account, add it here so it will be included in the user csv file. -->
+<!--
+    <ServiceAccount>
+        <UserId></UserId>
+        <DisplayName></DisplayName>
+    </ServiceAccount>
+-->
+<!--If no LDAP attributes are used, enter path to csv file with data to map attributes to users-->
     <Files>
-        <AttributeData>f:/my documents/_git/qs-odbc-udc-util/qsEMP.txt</AttributeData>
+<!--        <AttributeData>f:/my documents/_git/qs-odbc-udc-util/qsEMP.txt</AttributeData>
+-->
     </Files>
+<!--path to output directory for user and attribute csv files-->
     <Directories>
         <Output>f:/my documents/_git/qs-odbc-udc-util/output</Output>
     </Directories>
@@ -14,30 +24,36 @@
                     <Path>ou=activegroups,dc=americas,dc=example,dc=com</Path>
                     <Path>ou=securitygroups,dc=americas,dc=example,dc=com</Path>
                 </Paths>
-                <Security>
-                    <UserId></UserId>
-                    <Password></Password>
+<!--If a different account than the current logged in user OR the process will be run not logged in, enter domain\userid and password for account to access ldap -->
+<!--                <Security>
+                    <UserId>user</UserId>
+                    <Password>password</Password>
                 </Security>
+-->
                 <Groups>
                     <Group type="inline">qlikdevelopers</Group>
                     <Group type="file">f:/my documents/_git/qs-odbc-udc-util/groups.csv</Group>
                 </Groups>
             </Server>
-<!-->            <Server>
-                <Name>LDAP://europe.example.com/</Name>
-                <Paths>
-                    <Path>ou=groups,dc=europe,dc=example,dc=com</Path>
-                </Paths>
-                <Groups>
-                    <Group type="file">f:/my documents/_git/inputs/eu-groups.csv</Group>
-                </Groups>
-            </Server> -->
+<!--If multiple servers have universal groups required for Qlik Sense, add additional server entries using the following elements -->   
+<!--        <Server>
+                <Name></Name>
+                <Paths></Paths>
+                <Security></Security>
+                <Groups></Groups>
+            </Server>
+-->
         </Servers>
     </LDAP>
     <Domains>
         <Domain>
             <Name>americas</Name>
             <LDAP>http://americas.example.com</LDAP>
+            <Paths>
+                <Path>OU=buried_group,OU=in_an_OU,DC=americas,DC=example,DC=com</Path>
+                <Path>OU=another_buried_group,OU=in_an_OU,DC=americas,DC=example,DC=com</Path>
+            </Paths>
+<!--Only used when AttributeData file is NOT supplied, enter the attributes to pull from the ldap for addition to the attribute csv-->
             <Attributes>
                 <Attribute>memberof</Attribute>
                 <Attribute>mail</Attribute>
@@ -46,6 +62,11 @@
         <Domain>
             <Name>europe</Name>
             <LDAP>http://europe.example.com</LDAP>
+            <Paths>
+                <Path>OU=buried_group,OU=in_an_OU,DC=europe,DC=example,DC=com</Path>
+                <Path>OU=another_buried_group,OU=in_an_OU,DC=europe,DC=example,DC=com</Path>
+            </Paths>
+<!--Only used when AttributeData file is NOT supplied, enter the attributes to pull from the ldap for addition to the attribute csv-->
             <Attributes>
                 <Attribute>memberof</Attribute>
                 <Attribute>mail</Attribute>

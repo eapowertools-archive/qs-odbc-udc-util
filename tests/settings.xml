@@ -38,6 +38,10 @@
         <Domain>
             <Name>americas</Name>
             <LDAP>http://americas.example.com</LDAP>
+            <Paths>
+                <Path>OU=buried_group,OU=in_an_OU,DC=americas,DC=example,DC=com</Path>
+                <Path>OU=another_buried_group,OU=in_an_OU,DC=americas,DC=example,DC=com</Path>
+            </Paths>
             <Attributes>
                 <Attribute>memberof</Attribute>
                 <Attribute>mail</Attribute>
