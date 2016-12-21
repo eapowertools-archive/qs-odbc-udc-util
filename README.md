@@ -72,6 +72,10 @@ The qs-odbc-udc-util uses an xml file named settings.xml to provide configuratio
 		<Domain>
 			<Name>DomainOne</Name>
 			<LDAP>http://domainone.example.com</LDAP>
+			<Paths>
+                		<Path>OU=buried_group,OU=in_an_OU,DC=domainone,DC=example,DC=com</Path>
+                		<Path>OU=another_buried_group,OU=in_an_OU,DC=domainone,DC=example,DC=com</Path>
+            		</Paths>
 <!--Only used when AttributeData file is NOT supplied, enter the attributes to pull from the ldap for addition to the attribute csv-->
 			<Attributes>
 				<Attribute>memberof</Attribute>
@@ -81,6 +85,10 @@ The qs-odbc-udc-util uses an xml file named settings.xml to provide configuratio
 		<Domain>
 			<Name>DomainTwo</Name>
 			<LDAP>http://domaintwo.example.com</LDAP>
+			<Paths>
+				<Path>OU=buried_group,OU=in_an_OU,DC=domaintwo,DC=example,DC=com</Path>
+				<Path>OU=another_buried_group,OU=in_an_OU,DC=domaintwo,DC=example,DC=com</Path>
+			</Paths>
 <!--Only used when AttributeData file is NOT supplied, enter the attributes to pull from the ldap for addition to the attribute csv-->
 			<Attributes>
 				<Attribute>memberof</Attribute>
@@ -128,4 +136,4 @@ Server elements may contain the following information:
 * **`<Groups><Group`** `type="inline||file"`**`>`** - The Group element identifies universal groups to search for users.  An inline attribute indicates a group provided in the settings file.  A file attribute indicates a csv file containing group names is used.  When using the file attribute the full path to the csv file containing group names is required. 
 
 ####Domains
-The Domains section contains the domains to evaluate universal group members origin to properly place them in the correct user and attributes csv file.  In addition, the Domains section specifies the name of the domain, the ldap address for the domain, and attribute names for values that will be added to the csv files.
+The Domains section contains the domains to evaluate universal group members origin to properly place them in the correct user and attributes csv file.  In addition, the Domains section specifies the name of the domain, the ldap address for the domain, the distinguished names for organizational units where user entities are stored in the ldap, and attribute names for values that will be added to the csv files.
