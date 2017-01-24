@@ -23,18 +23,22 @@ The qs-odbc-udc-util uses an xml file named settings.xml to provide configuratio
 ###XML File Structure
 ```xml
 <Settings>
-	<ServiceAccounts>
+<!--If Qlik Sense service account is a domain account, add it here so it will be included in the user csv file. -->
+  <ServiceAccounts>
         <Account>
             <UserId>UserId</UserId>
             <DisplayName>DisplayName</DisplayName>
         </Account>
-    </ServiceAccounts>
-    <ServiceAccountDomain>DomainName</ServiceAccountDomain>
+  </ServiceAccounts>
+  <ServiceAccountDomain>DomainName</ServiceAccountDomain>
+<!--If no LDAP attributes are used, enter path to csv file with data to map attributes to users-->
 	<Files>
-		<AttributeData>If no LDAP attributes are used, enter path to csv file with data to map attributes to users</AttributeData>
+<!--		<AttributeData></AttributeData>
+-->
 	</Files>
+<!--path to output directory for user and attribute csv files-->	
 	<Directories>
-		<Output>path to output directory for user and attribute csv files</Output>
+		<Output>c:/path/to/output/files</Output>
 	</Directories>
 	<LDAP>
 		<Servers>
@@ -45,45 +49,55 @@ The qs-odbc-udc-util uses an xml file named settings.xml to provide configuratio
 					<Path>ou=groups,dc=example,dc=com</Path>
 					<Path>ou=otherGroups,dc=example,dc=com</Path>
 				</Paths>
-				<Security>
+<!--If a different account than the current logged in user OR the process will be run not logged in, enter domain\userid and password for account to access ldap -->
+<!--				<Security>
 					<UserId>user</UserId>
 					<Password>password</Password>
 				</Security>
+-->
 				<Groups>
 					<Group type="inline">InlineGroup1</Group>
 					<Group type="inline">InlineGroup2</Group>
 					<Group type="file">path to csv file with list of groups</Group>
 				</Groups>
 			</Server>
+<!--If multiple servers have universal groups required for Qlik Sense, add additional server entries using the following elements -->	
+<!--			<Server>
+				<Name></Name>
+				<Paths></Paths>
+				<Security></Security>
+				<Groups></Groups>
+			</Server>
+-->
 		</Servers>
 	</LDAP>
 	<Domains>
 		<Domain>
-            <Name>americas</Name>
-            <LDAP>http://americas.example.com</LDAP>
-            <Paths>
-                <Path>OU=buried_group,OU=in_an_OU,DC=americas,DC=example,DC=com</Path>
-                <Path>OU=another_buried_group,OU=in_an_OU,DC=americas,DC=example,DC=com</Path>
-            </Paths>
+			<Name>DomainOne</Name>
+			<LDAP>http://domainone.example.com</LDAP>
+			<Paths>
+                		<Path>OU=buried_group,OU=in_an_OU,DC=domainone,DC=example,DC=com</Path>
+                		<Path>OU=another_buried_group,OU=in_an_OU,DC=domainone,DC=example,DC=com</Path>
+            		</Paths>
 <!--Only used when AttributeData file is NOT supplied, enter the attributes to pull from the ldap for addition to the attribute csv-->
-            <Attributes>
-                <Attribute>memberof</Attribute>
-                <Attribute>mail</Attribute>
-            </Attributes>
-        </Domain>
+			<Attributes>
+				<Attribute>memberof</Attribute>
+				<Attribute>mail</Attribute>
+			</Attributes>
+		</Domain>
 		<Domain>
-            <Name>europe</Name>
-            <LDAP>http://europe.example.com</LDAP>
-            <Paths>
-                <Path>OU=buried_group,OU=in_an_OU,DC=europe,DC=example,DC=com</Path>
-                <Path>OU=another_buried_group,OU=in_an_OU,DC=europe,DC=example,DC=com</Path>
-            </Paths>
+			<Name>DomainTwo</Name>
+			<LDAP>http://domaintwo.example.com</LDAP>
+			<Paths>
+				<Path>OU=buried_group,OU=in_an_OU,DC=domaintwo,DC=example,DC=com</Path>
+				<Path>OU=another_buried_group,OU=in_an_OU,DC=domaintwo,DC=example,DC=com</Path>
+			</Paths>
 <!--Only used when AttributeData file is NOT supplied, enter the attributes to pull from the ldap for addition to the attribute csv-->
-            <Attributes>
-                <Attribute>memberof</Attribute>
-                <Attribute>mail</Attribute>
-            </Attributes>
-        </Domain>
+			<Attributes>
+				<Attribute>memberof</Attribute>
+				<Attribute>mail</Attribute>
+			</Attributes>
+		</Domain>
 	</Domains>		
 </Settings>
 ```
@@ -92,6 +106,9 @@ The Settings.xml file contains the following sections:
 
 ####ServiceAccounts
 The ServiceAccounts section allows for manually entered accounts into the users csv file.  The ServiceAccountDomain element contains the friendly name of the domain these users will be added to.
+
+####ServiceAccount (default:disabled)
+When a domain account is used for the service account for running Qlik Sense, by default it is the rootadmin of the Qlik Sense Site.  If the account is not included in the udc for the userdirectory name, it will be denied access.  This element ensures the account is included. 
 
 ####Files
 The Files section is used when an external file containing attributes is mapped to users from the LDAP.  The case for this may be when an LDAP is not the source of record for user attributes.  If an external file is referenced, use the `AttributeDataFile` element tag and supply the path and name of the file.
