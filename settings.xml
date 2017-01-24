@@ -2,15 +2,17 @@
 <Settings>
 <!--If Qlik Sense service account is a domain account, add it here so it will be included in the user csv file. -->
 <!--
-    <ServiceAccount>
-        <UserId></UserId>
-        <DisplayName></DisplayName>
-    </ServiceAccount>
+    <ServiceAccounts>
+        <Account>
+            <UserId>UserId</UserId>
+            <DisplayName>DisplayName</DisplayName>
+        </Account>
+    </ServiceAccounts>
+    <ServiceAccountDomain>DomainName</ServiceAccountDomain>
 -->
 <!--If no LDAP attributes are used, enter path to csv file with data to map attributes to users-->
     <Files>
-<!--        <AttributeData>f:/my documents/_git/qs-odbc-udc-util/qsEMP.txt</AttributeData>
--->
+        <AttributeData>f:/my documents/_git/qs-odbc-udc-util/qsEMP.txt</AttributeData>
     </Files>
 <!--path to output directory for user and attribute csv files-->
     <Directories>
@@ -19,7 +21,8 @@
     <LDAP>
         <Servers>
             <Server>
-                <Name>LDAP://americas.example.com/</Name>
+                <Name>americas</Name>
+                <LDAP>LDAP://americas.example.com/</LDAP>
                 <Paths>
                     <Path>ou=activegroups,dc=americas,dc=example,dc=com</Path>
                     <Path>ou=securitygroups,dc=americas,dc=example,dc=com</Path>
@@ -35,7 +38,7 @@
                     <Group type="file">f:/my documents/_git/qs-odbc-udc-util/groups.csv</Group>
                 </Groups>
             </Server>
-<!--If multiple servers have universal groups required for Qlik Sense, add additional server entries using the following elements -->   
+<!--If multiple servers have global groups required for Qlik Sense, add additional server entries using the following elements -->   
 <!--        <Server>
                 <Name></Name>
                 <Paths></Paths>

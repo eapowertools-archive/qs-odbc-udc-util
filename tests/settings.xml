@@ -9,19 +9,20 @@
     <LDAP>
         <Servers>
             <Server>
-                <Name>LDAP://americas.example.com/</Name>
+                <Name>qliktech</Name>
+                <LDAP>LDAP://qliktech.com/</LDAP>
                 <Paths>
-                    <Path>ou=activegroups,dc=americas,dc=example,dc=com</Path>
-                    <Path>ou=securitygroups,dc=americas,dc=example,dc=com</Path>
+                    <Path>OU=AP,OU=Activate Groups,DC=qliktech,DC=com</Path>
                 </Paths>
                 <Security>
                     <UserId></UserId>
                     <Password></Password>
                 </Security>
-                <Groups>
-                    <Group type="inline">qlikdevelopers</Group>
+<!-->                 <Groups>
+                   <Group type="inline">qlikdevelopers</Group>
                     <Group type="file">f:/my documents/_git/qs-odbc-udc-util/groups.csv</Group>
-                </Groups>
+                </Groups> 
+-->
             </Server>
 <!-->            <Server>
                 <Name>LDAP://europe.example.com/</Name>
@@ -31,7 +32,8 @@
                 <Groups>
                     <Group type="file">f:/my documents/_git/inputs/eu-groups.csv</Group>
                 </Groups>
-            </Server> -->
+            </Server> 
+-->
         </Servers>
     </LDAP>
     <Domains>
