@@ -1,31 +1,79 @@
 <?xml version="1.0"?>
 <Settings>
+<!--If Qlik Sense service account is a domain account, add it here so it will be included in the user csv file. -->
+<!--
+    <ServiceAccounts>
+        <Account>
+            <UserId>UserId</UserId>
+            <DisplayName>DisplayName</DisplayName>
+        </Account>
+    </ServiceAccounts>
+    <ServiceAccountDomain>DomainName</ServiceAccountDomain>
+-->
+<!--If no LDAP attributes are used, enter path to csv file with data to map attributes to users-->
     <Files>
-        <HRData>f:/my documents/_git/qs-odbc-udc-util/qsEMP.txt</HRData>
-        <Group>f:/my documents/_git/qs-odbc-udc-util/groups.csv</Group>
+        <AttributeData>f:/my documents/_git/qs-odbc-udc-util/qsEMP.txt</AttributeData>
     </Files>
+<!--path to output directory for user and attribute csv files-->
     <Directories>
         <Output>f:/my documents/_git/qs-odbc-udc-util/output</Output>
     </Directories>
     <LDAP>
-        <Server>LDAP Address Goes here</Server>
-        <Paths>
-            <Path>LDAP Path goes here</Path>
-            <Path>LDAP Path goes here</Path>
-        </Paths>
+        <Servers>
+            <Server>
+                <Name>americas</Name>
+                <LDAP>LDAP://americas.example.com/</LDAP>
+                <Paths>
+                    <Path>ou=activegroups,dc=americas,dc=example,dc=com</Path>
+                    <Path>ou=securitygroups,dc=americas,dc=example,dc=com</Path>
+                </Paths>
+<!--If a different account than the current logged in user OR the process will be run not logged in, enter domain\userid and password for account to access ldap -->
+<!--                <Security>
+                    <UserId>user</UserId>
+                    <Password>password</Password>
+                </Security>
+-->
+                <Groups>
+                    <Group type="inline">qlikdevelopers</Group>
+                    <Group type="file">f:/my documents/_git/qs-odbc-udc-util/groups.csv</Group>
+                </Groups>
+            </Server>
+<!--If multiple servers have global groups required for Qlik Sense, add additional server entries using the following elements -->   
+<!--        <Server>
+                <Name></Name>
+                <Paths></Paths>
+                <Security></Security>
+                <Groups></Groups>
+            </Server>
+-->
+        </Servers>
     </LDAP>
-    <Security>
-        <UserId>boohoo</UserId>
-        <Password>foo</Password>
-    </Security>
-    <Groups>
-        <Group>If not using a group file, group name goes here</Group>
-        <Group>If not using a group file, group name goes here</Group>
-    </Groups>
     <Domains>
-        <Domain>foo</Domain>
-        <Domain>nam</Domain>
-        <Domain>eur</Domain>
-        <Domain>jpn</Domain>
+        <Domain>
+            <Name>americas</Name>
+            <LDAP>http://americas.example.com</LDAP>
+            <Paths>
+                <Path>OU=buried_group,OU=in_an_OU,DC=americas,DC=example,DC=com</Path>
+                <Path>OU=another_buried_group,OU=in_an_OU,DC=americas,DC=example,DC=com</Path>
+            </Paths>
+<!--Only used when AttributeData file is NOT supplied, enter the attributes to pull from the ldap for addition to the attribute csv-->
+            <Attributes>
+                <Attribute>memberof</Attribute>
+                <Attribute>mail</Attribute>
+            </Attributes>
+        </Domain>
+        <Domain>
+            <Name>europe</Name>
+            <LDAP>http://europe.example.com</LDAP>
+            <Paths>
+                <Path>OU=buried_group,OU=in_an_OU,DC=europe,DC=example,DC=com</Path>
+                <Path>OU=another_buried_group,OU=in_an_OU,DC=europe,DC=example,DC=com</Path>
+            </Paths>
+<!--Only used when AttributeData file is NOT supplied, enter the attributes to pull from the ldap for addition to the attribute csv-->
+            <Attributes>
+                <Attribute>memberof</Attribute>
+                <Attribute>mail</Attribute>
+            </Attributes>
+        </Domain>
     </Domains>
 </Settings>

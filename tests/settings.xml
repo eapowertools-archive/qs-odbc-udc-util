@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<Settings>
+    <Files>
+        <AttributeData>f:/my documents/_git/qs-odbc-udc-util/qsEMP.txt</AttributeData>
+    </Files>
+    <Directories>
+        <Output>f:/my documents/_git/qs-odbc-udc-util/output</Output>
+    </Directories>
+    <LDAP>
+        <Servers>
+            <Server>
+                <Name>qliktech</Name>
+                <LDAP>LDAP://qliktech.com/</LDAP>
+                <Paths>
+                    <Path>OU=AP,OU=Activate Groups,DC=qliktech,DC=com</Path>
+                </Paths>
+                <Security>
+                    <UserId></UserId>
+                    <Password></Password>
+                </Security>
+<!-->                 <Groups>
+                   <Group type="inline">qlikdevelopers</Group>
+                    <Group type="file">f:/my documents/_git/qs-odbc-udc-util/groups.csv</Group>
+                </Groups> 
+-->
+            </Server>
+<!-->            <Server>
+                <Name>LDAP://europe.example.com/</Name>
+                <Paths>
+                    <Path>ou=groups,dc=europe,dc=example,dc=com</Path>
+                </Paths>
+                <Groups>
+                    <Group type="file">f:/my documents/_git/inputs/eu-groups.csv</Group>
+                </Groups>
+            </Server> 
+-->
+        </Servers>
+    </LDAP>
+    <Domains>
+        <Domain>
+            <Name>americas</Name>
+            <LDAP>http://americas.example.com</LDAP>
+            <Paths>
+                <Path>OU=buried_group,OU=in_an_OU,DC=americas,DC=example,DC=com</Path>
+                <Path>OU=another_buried_group,OU=in_an_OU,DC=americas,DC=example,DC=com</Path>
+            </Paths>
+            <Attributes>
+                <Attribute>memberof</Attribute>
+                <Attribute>mail</Attribute>
+            </Attributes>
+        </Domain>
+        <Domain>
+            <Name>europe</Name>
+            <LDAP>http://europe.example.com</LDAP>
+            <Attributes>
+                <Attribute>memberof</Attribute>
+                <Attribute>mail</Attribute>
+            </Attributes>
+        </Domain>
+        <Domain>
+            <Name>qliktech</Name>
+            <LDAP>LDAP://qliktech.com/</LDAP>
+            <Path>DC=qliktech,DC=com</Path>
+            <Attributes>
+                <Attribute>memberof</Attribute>
+                <Attribute>mail</Attribute>
+            </Attributes>
+        </Domain>
+    </Domains>
+</Settings>
