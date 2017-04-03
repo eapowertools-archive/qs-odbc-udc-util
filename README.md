@@ -1,9 +1,9 @@
 # qs-odbc-udc-util
 
-###An alternative solution for Global Active Directory Synchronization with Qlik Sense
+### An alternative solution for Global Active Directory Synchronization with Qlik Sense
 
 ---
-##Problem
+## Problem
 Qlik Sense supports multiple active directory  (AD) connections by allowing a user directory connector (udc) to be created for each domain in an AD forest.  Unfortunately, multiple AD forests tend to have universal groups, and these groups do not import for the users who are not part of the same domain as the group.
 
 >For example: 
@@ -14,13 +14,13 @@ Qlik Sense supports multiple active directory  (AD) connections by allowing a us
 
 As a result, universal groups do not show up for all the appropriate members of the universal group if their domain is different than the group's origin domain.
 
-##Solution
+## Solution
 The qs-odbc-udc-util tool (so needs a better name) is a set of Windows Powershell modules and a script.  It reaches into Active Directory LDAPs, parses groups, and creates the appropriate user and attribute files (in csv format) for each domain in an Active Directory forest.  The resulting user and attribute csv files can be used to establish ODBC user directory connectors in the Qlik Sense QMC.
 
-##Configuration
+## Configuration
 The qs-odbc-udc-util uses an xml file named settings.xml to provide configuration information to the powershell script that performs the work.  The settings file needs to be completed before running the script.
 
-###XML File Structure
+### XML File Structure
 ```xml
 <Settings>
 <!--If Qlik Sense service account is a domain account, add it here so it will be included in the user csv file. -->
@@ -101,38 +101,38 @@ The qs-odbc-udc-util uses an xml file named settings.xml to provide configuratio
 	</Domains>		
 </Settings>
 ```
-###Interpreting the XML File
+### Interpreting the XML File
 The Settings.xml file contains the following sections:
 
-####ServiceAccounts
+#### ServiceAccounts
 The ServiceAccounts section allows for manually entered accounts into the users csv file.  The ServiceAccountDomain element contains the friendly name of the domain these users will be added to.
 
-####ServiceAccount (default:disabled)
+#### ServiceAccount (default:disabled)
 When a domain account is used for the service account for running Qlik Sense, by default it is the rootadmin of the Qlik Sense Site.  If the account is not included in the udc for the userdirectory name, it will be denied access.  This element ensures the account is included. 
 
-####Files
+#### Files
 The Files section is used when an external file containing attributes is mapped to users from the LDAP.  The case for this may be when an LDAP is not the source of record for user attributes.  If an external file is referenced, use the `AttributeDataFile` element tag and supply the path and name of the file.
 
-#####Requirements
+##### Requirements
 * Use the AttributeDataFile Element
 * Specify full path to file **e.g.** c:/docs/info.csv
 * File in csv format
 
-#####AttributeDataFile file structure
+##### AttributeDataFile file structure
 
 UserId | Type | Value
 -------|------|------
 abc123 |email | abc123@example.com
 abc123 |role  | developer
 
-####Directories
+#### Directories
 The Directories section specifies the output path for files created by the script.  Currently, only one output path is supported.
-#####Requirements
+##### Requirements
 * Use the Output Element for the output path
 * Specify full path to file **e.g.** c:/output
 * File in csv format 
 
-####LDAP
+#### LDAP
 The LDAP section contains a number of settings for connecting and traversing LDAPs for user information.  LDAP connections are referenced in Server elements.  Each Server element refers to a specific LDAP where the script will perform the extraction and parsing of users into user and attribute csvs.
 
 Server elements may contain the following information:
@@ -142,7 +142,7 @@ Server elements may contain the following information:
 * **`<Security>`** - The Security element (optional) stores user and password information for an LDAP connection.  If omitted, the user context the script is run will be used to connect to the LDAP.
 * **`<Groups><Group`** `type="inline||file"`**`>`** - The Group element identifies universal groups to search for users.  An inline attribute indicates a group provided in the settings file.  A file attribute indicates a csv file containing group names is used.  When using the file attribute the full path to the csv file containing group names is required. 
 
-####Domains
+#### Domains
 The Domains section facilitates two functions; adding users that are not part of the local groups scoped in the Server section, and adding attributes to the users found in local groups scoped in the Server section.
 
 Domain elements contain the following information:
@@ -151,7 +151,7 @@ Domain elements contain the following information:
 * **`<Paths><Path>`** - LDAP paths to search for users
 * **`<Attributes><Attribute>`** - Used when an AttributeDataFile is NOT supplied, identify the attributes to be pulled from the LDAP and added to the attributes csv file.
 
-##Usage
+## Usage
 
 **Note: Domains to be run on must exist in the Domains section of the settings file.
 
